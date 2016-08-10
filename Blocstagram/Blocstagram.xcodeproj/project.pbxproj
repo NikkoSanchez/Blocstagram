@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B997A08B1D5AF228006AC8E0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A08A1D5AF228006AC8E0 /* User.m */; };
+		B997A08E1D5AF2F6006AC8E0 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A08D1D5AF2F6006AC8E0 /* Media.m */; };
+		B997A0911D5AF577006AC8E0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A0901D5AF577006AC8E0 /* Comment.m */; };
+		B997A0941D5AF753006AC8E0 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A0931D5AF753006AC8E0 /* DataSource.m */; };
 		B9E7F2FC1D5A7C7200EE4422 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E7F2FB1D5A7C7200EE4422 /* main.m */; };
 		B9E7F2FF1D5A7C7200EE4422 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E7F2FE1D5A7C7200EE4422 /* AppDelegate.m */; };
 		B9E7F3071D5A7C7200EE4422 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9E7F3061D5A7C7200EE4422 /* Assets.xcassets */; };
@@ -36,6 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B997A0891D5AF228006AC8E0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		B997A08A1D5AF228006AC8E0 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B997A08C1D5AF2F6006AC8E0 /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
+		B997A08D1D5AF2F6006AC8E0 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
+		B997A08F1D5AF577006AC8E0 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		B997A0901D5AF577006AC8E0 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		B997A0921D5AF753006AC8E0 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		B997A0931D5AF753006AC8E0 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		B9E7F2F71D5A7C7200EE4422 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E7F2FB1D5A7C7200EE4422 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B9E7F2FD1D5A7C7200EE4422 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +114,14 @@
 				B9E7F31F1D5A800100EE4422 /* Images */,
 				B9E7F3371D5A812C00EE4422 /* ImagesTableViewController.h */,
 				B9E7F3381D5A812C00EE4422 /* ImagesTableViewController.m */,
+				B997A0891D5AF228006AC8E0 /* User.h */,
+				B997A08C1D5AF2F6006AC8E0 /* Media.h */,
+				B997A08D1D5AF2F6006AC8E0 /* Media.m */,
+				B997A08F1D5AF577006AC8E0 /* Comment.h */,
+				B997A0901D5AF577006AC8E0 /* Comment.m */,
+				B997A0921D5AF753006AC8E0 /* DataSource.h */,
+				B997A0931D5AF753006AC8E0 /* DataSource.m */,
+				B997A08A1D5AF228006AC8E0 /* User.m */,
 				B9E7F2FD1D5A7C7200EE4422 /* AppDelegate.h */,
 				B9E7F2FE1D5A7C7200EE4422 /* AppDelegate.m */,
 				B9E7F3061D5A7C7200EE4422 /* Assets.xcassets */,
@@ -255,7 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B997A08B1D5AF228006AC8E0 /* User.m in Sources */,
+				B997A0911D5AF577006AC8E0 /* Comment.m in Sources */,
+				B997A08E1D5AF2F6006AC8E0 /* Media.m in Sources */,
 				B9E7F2FF1D5A7C7200EE4422 /* AppDelegate.m in Sources */,
+				B997A0941D5AF753006AC8E0 /* DataSource.m in Sources */,
 				B9E7F2FC1D5A7C7200EE4422 /* main.m in Sources */,
 				B9E7F3391D5A812C00EE4422 /* ImagesTableViewController.m in Sources */,
 			);
