@@ -79,6 +79,10 @@ static NSParagraphStyle *paragraphStyle;
     [mutableUsernameAndCaptionString addAttribute:NSFontAttributeName value:[boldFont fontWithSize:usernameFontSize] range:usernameRange];
     [mutableUsernameAndCaptionString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
     
+    // Increase the kerning of only the image caption
+    NSRange captionRange = [baseString rangeOfString:self.mediaItem.caption];
+    [mutableUsernameAndCaptionString addAttribute:NSKernAttributeName value:@5 range:captionRange];
+    
     return mutableUsernameAndCaptionString;
 }
 
@@ -91,8 +95,12 @@ static NSParagraphStyle *paragraphStyle;
 - (NSAttributedString *) commentString {
 
     NSMutableAttributedString *commentString = [[NSMutableAttributedString alloc]init];
+    NSMutableParagraphStyle *mutableParagraphStyle = [paragraphStyle mutableCopy];
+    // Make a counter to track first comment
+    NSInteger counter = 1;
     
     for (Comment *comment in self.mediaItem.comments) {
+        
         // Make a string that says "username comment" followed by a line break
         NSString *baseString = [NSString stringWithFormat:@"%@ %@\n", comment.from.userName, comment.text];
         
@@ -103,7 +111,28 @@ static NSParagraphStyle *paragraphStyle;
         [oneCommentString addAttribute:NSFontAttributeName value:boldFont range:usernameRange];
         [oneCommentString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
         
+        // If it's first comment change font orange
+        NSRange userCommentRange = [baseString rangeOfString:comment.text];
+        if (counter == 1) {
+            [oneCommentString addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:userCommentRange];
+        }
+        
+        // Right align every other comment
+        if (counter % 2 == 0) {
+            [mutableParagraphStyle setAlignment:NSTextAlignmentRight];
+            
+            NSMutableAttributedString *rightCommentString = [[NSMutableAttributedString alloc]initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : mutableParagraphStyle}];
+            
+            NSRange usernameRange = [baseString rangeOfString:comment.from.userName];
+            [rightCommentString addAttribute:NSFontAttributeName value:boldFont range:usernameRange];
+            [rightCommentString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
+            [commentString appendAttributedString:rightCommentString];
+            counter++;
+        } else {
+        
         [commentString appendAttributedString:oneCommentString];
+        counter++;
+        }
     }
     
     return commentString;
