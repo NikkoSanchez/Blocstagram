@@ -20,7 +20,7 @@
 NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewControllerDidGetAccessTokenNotification";
 
 - (NSString *)redirectURI {
-    return @"https://www.instagram.com";
+    return @"https://www.google.com";
 }
 
 - (void)viewDidLoad {
