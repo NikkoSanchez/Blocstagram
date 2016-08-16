@@ -61,6 +61,9 @@
                             [self downloadImageForMediaItem:mediaItem];
                         }
                         
+                        //After loading cached images call requestNewItemsWithCompletionHandler method in order to get new images
+                        [self requestNewItemsWithCompletionHandler:nil];
+                        
                     } else {
                         [self populateDataWithParameters:nil completionHandler:nil];
                     }
