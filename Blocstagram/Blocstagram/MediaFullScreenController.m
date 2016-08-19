@@ -8,6 +8,7 @@
 
 #import "MediaFullScreenController.h"
 #import "Media.h"
+#import "MediaTableViewCell.h"
 
 @interface MediaFullScreenController () <UIScrollViewDelegate>
 
@@ -45,6 +46,9 @@
     
     self.scrollView.contentSize = self.media.image.size;
     
+    //making adjustments
+    
+    
     self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFired:)];
     
     self.doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapFired:)];
@@ -54,6 +58,17 @@
     
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
+    
+    // Make a share button in the top right corner
+    UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    [shareButton sizeToFit];
+    [self.view addSubview:shareButton];
+    CGFloat shareButtonWidth = shareButton.frame.size.width;
+    CGFloat shareButtonHeight = shareButton.frame.size.height;
+    shareButton.center = CGPointMake(self.view.bounds.size.width - shareButtonWidth, shareButtonHeight);
+    [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
 
 }
 
@@ -76,6 +91,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) shareButtonPressed:(UIButton *) button{
+    NSMutableArray *itemsToShare = [[NSMutableArray alloc]init];
+    [itemsToShare addObject:self.media.caption];
+    [itemsToShare addObject:self.media.image];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 - (void)centerScrollView {
