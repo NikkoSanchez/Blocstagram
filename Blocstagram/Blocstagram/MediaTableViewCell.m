@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSLayoutConstraint *commentLabelHeightConstraint;
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *twoFingerGestureRecognizer;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 
 @end
@@ -69,6 +70,13 @@ static NSParagraphStyle *paragraphStyle;
         self.usernameAndCaptionLabel = [[UILabel alloc]init];
         self.usernameAndCaptionLabel.numberOfLines = 0;
         self.usernameAndCaptionLabel.backgroundColor = usernameLabelGray;
+        
+        // initialize UITapGestureRecognizer and set number of touches to 2
+        
+        self.twoFingerGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(twoFingerTapFired:)];
+        self.twoFingerGestureRecognizer.delegate = self;
+        [self.twoFingerGestureRecognizer setNumberOfTouchesRequired:2];
+        [self.mediaImageView addGestureRecognizer:self.twoFingerGestureRecognizer];
         
         self.commentLabel = [[UILabel alloc]init];
         self.commentLabel.numberOfLines = 0;
@@ -208,6 +216,12 @@ static NSParagraphStyle *paragraphStyle;
     if (sender.state == UIGestureRecognizerStateBegan) {
         [self.delegate cell:self didLongPressImageView:self.mediaImageView];
     }
+}
+
+- (void) twoFingerTapFired:(UITapGestureRecognizer *)sender {
+    
+    [self.delegate cell:self didTwoFingerTapImageView:self.mediaImageView];
+
 }
 
 #pragma mark - UIGestureRecognizerDelegate
