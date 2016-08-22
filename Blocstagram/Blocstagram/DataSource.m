@@ -93,7 +93,8 @@
         
         mediaItem.likeState = LikeStateLiking;
         
-        [self.instagramOperationManager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+       [self.instagramOperationManager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             mediaItem.likeState = LikeStateLiked;
             
             if (completionHandler) {
@@ -125,6 +126,8 @@
             }
         }];
     }
+    
+    [mediaItem countNumberOfLikes];
 }
 
 #pragma mark - Key/Value Observing

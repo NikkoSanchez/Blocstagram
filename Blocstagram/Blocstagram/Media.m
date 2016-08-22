@@ -50,6 +50,12 @@
         BOOL userHasLiked = [mediaDictionary[@"user_has_liked"] boolValue];
         
         self.likeState = userHasLiked ? LikeStateLiked : LikeStateNotLiked;
+        
+       /* NSDictionary *numberOfLikesDictionary = mediaDictionary[@"count"];
+        
+        if ([numberOfLikesDictionary isKindOfClass:[NSDictionary class]]) {
+            self.numberOfLikes = [numberOfLikesDictionary[@"count"] integerValue];
+        }*/
     }
     
     return self;
@@ -77,6 +83,7 @@
         self.caption = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(caption))];
         self.comments = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(comments))];
         self.likeState = [aDecoder decodeIntegerForKey:NSStringFromSelector(@selector(likeState))];
+        self.numberOfLikes = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(numberOfLikes))];
     }
     
     return self;
@@ -90,6 +97,18 @@
     [aCoder encodeObject:self.caption forKey:NSStringFromSelector(@selector(caption))];
     [aCoder encodeObject:self.comments forKey:NSStringFromSelector(@selector(comments))];
     [aCoder encodeInteger:self.likeState forKey:NSStringFromSelector(@selector(likeState))];
+    [aCoder encodeObject:self.numberOfLikes forKey:NSStringFromSelector(@selector(numberOfLikes))];
+}
+//testing if counter works
+- (void) countNumberOfLikes {
+    if (self.likeState == LikeStateLiked) {
+        int counter = [self.numberOfLikes intValue] ? [self.numberOfLikes intValue] : 0;
+        counter += 1;
+        self.numberOfLikes = [NSNumber numberWithInt:counter];
+    }
 }
 
+- (void)setNumberOfLikes:(NSNumber *)numberOfLikes{
+    _numberOfLikes = numberOfLikes;
+}
 @end
