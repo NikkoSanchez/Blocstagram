@@ -12,6 +12,8 @@
 		B997A08E1D5AF2F6006AC8E0 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A08D1D5AF2F6006AC8E0 /* Media.m */; };
 		B997A0911D5AF577006AC8E0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A0901D5AF577006AC8E0 /* Comment.m */; };
 		B997A0941D5AF753006AC8E0 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A0931D5AF753006AC8E0 /* DataSource.m */; };
+		B9A78D2B1D6B835F0098B771 /* CircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A78D2A1D6B835F0098B771 /* CircleSpinnerView.m */; };
+		B9A78D2E1D6B8A960098B771 /* LikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A78D2D1D6B8A960098B771 /* LikeButton.m */; };
 		B9E478291D5BDB59007DA0BA /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E478281D5BDB59007DA0BA /* MediaTableViewCell.m */; };
 		B9E7F2FC1D5A7C7200EE4422 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E7F2FB1D5A7C7200EE4422 /* main.m */; };
 		B9E7F2FF1D5A7C7200EE4422 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E7F2FE1D5A7C7200EE4422 /* AppDelegate.m */; };
@@ -56,6 +58,10 @@
 		B997A0901D5AF577006AC8E0 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		B997A0921D5AF753006AC8E0 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		B997A0931D5AF753006AC8E0 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		B9A78D291D6B835F0098B771 /* CircleSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleSpinnerView.h; sourceTree = "<group>"; };
+		B9A78D2A1D6B835F0098B771 /* CircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleSpinnerView.m; sourceTree = "<group>"; };
+		B9A78D2C1D6B8A960098B771 /* LikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeButton.h; sourceTree = "<group>"; };
+		B9A78D2D1D6B8A960098B771 /* LikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeButton.m; sourceTree = "<group>"; };
 		B9E478271D5BDB59007DA0BA /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
 		B9E478281D5BDB59007DA0BA /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
 		B9E7F2F71D5A7C7200EE4422 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +143,10 @@
 			isa = PBXGroup;
 			children = (
 				B9E7F31F1D5A800100EE4422 /* Images */,
+				B9A78D291D6B835F0098B771 /* CircleSpinnerView.h */,
+				B9A78D2A1D6B835F0098B771 /* CircleSpinnerView.m */,
+				B9A78D2C1D6B8A960098B771 /* LikeButton.h */,
+				B9A78D2D1D6B8A960098B771 /* LikeButton.m */,
 				B9E7F3371D5A812C00EE4422 /* ImagesTableViewController.h */,
 				B9E7F3381D5A812C00EE4422 /* ImagesTableViewController.m */,
 				B9E478271D5BDB59007DA0BA /* MediaTableViewCell.h */,
@@ -366,12 +376,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B997A08B1D5AF228006AC8E0 /* User.m in Sources */,
+				B9A78D2B1D6B835F0098B771 /* CircleSpinnerView.m in Sources */,
 				B997A0911D5AF577006AC8E0 /* Comment.m in Sources */,
 				B9E478291D5BDB59007DA0BA /* MediaTableViewCell.m in Sources */,
 				B9F129471D64F6070000D1E4 /* MediaFullScreenController.m in Sources */,
 				B997A08E1D5AF2F6006AC8E0 /* Media.m in Sources */,
 				B9E7F2FF1D5A7C7200EE4422 /* AppDelegate.m in Sources */,
 				B93287441D6163BC00F1F3BA /* LoginViewController.m in Sources */,
+				B9A78D2E1D6B8A960098B771 /* LikeButton.m in Sources */,
 				B997A0941D5AF753006AC8E0 /* DataSource.m in Sources */,
 				B9E7F2FC1D5A7C7200EE4422 /* main.m in Sources */,
 				B9E7F3391D5A812C00EE4422 /* ImagesTableViewController.m in Sources */,
