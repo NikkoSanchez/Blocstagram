@@ -88,11 +88,17 @@
 - (void) setIsWritingComment:(BOOL)isWritingComment animated:(BOOL)animated {
     _isWritingComment = isWritingComment;
     
-    if (animated) {
+    /*if (animated) {
         [UIView animateWithDuration:0.2 animations:^{
             [self layoutSubviews];
         }];
-    } else {
+     }*/
+    if (animated) {
+        [UIView animateWithDuration:0.9 delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:0.5f options:0 animations:^{
+             [self layoutSubviews];
+         }completion:nil];
+     }
+        else {
         [self layoutSubviews];
     }
 }
