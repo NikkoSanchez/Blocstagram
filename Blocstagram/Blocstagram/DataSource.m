@@ -96,7 +96,8 @@
         
        [self.instagramOperationManager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             mediaItem.likeState = LikeStateLiked;
-            
+           //trying something out
+           mediaItem.numberOfLikes++;
             if (completionHandler) {
                 completionHandler();
             }
@@ -114,7 +115,8 @@
         
         [self.instagramOperationManager DELETE:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             mediaItem.likeState = LikeStateNotLiked;
-            
+            //trying something out
+            mediaItem.numberOfLikes--;
             if (completionHandler) {
                 completionHandler();
             }
@@ -127,7 +129,6 @@
         }];
     }
     
-    [mediaItem countNumberOfLikes];
 }
 
 #pragma mark - Key/Value Observing

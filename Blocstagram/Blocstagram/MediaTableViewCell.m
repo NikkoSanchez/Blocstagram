@@ -195,8 +195,10 @@ static NSParagraphStyle *paragraphStyle;
     self.usernameAndCaptionLabel.attributedText = [self usernameAndCaptionString];
     self.commentLabel.attributedText = [self commentString];
     self.likeButton.likeButtonState = mediaItem.likeState;
-   // NSString *numberOfLikesString = [NSString stringWithFormat:@"%ld", self.mediaItem.numberOfLikes];
-    self.numberOfLikesLabel.text = (self.mediaItem.numberOfLikes.stringValue ? self.mediaItem.numberOfLikes.stringValue : @"0");
+    // working on likes
+    NSInteger countLikes = self.mediaItem.numberOfLikes;
+    NSString *numberOfLikesString = [NSString stringWithFormat:@"%ld", (long)countLikes];
+    self.numberOfLikesLabel.text = numberOfLikesString;
 }
 
 + (CGFloat) heightForMediaItem:(Media *)mediaItem width:(CGFloat)width {

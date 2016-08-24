@@ -51,11 +51,13 @@
         
         self.likeState = userHasLiked ? LikeStateLiked : LikeStateNotLiked;
         
-       /* NSDictionary *numberOfLikesDictionary = mediaDictionary[@"count"];
+        NSDictionary *numberOfLikesDictionary = mediaDictionary[@"likes"];
+        //Set numberOfLikes to whatever the integer values is for Key Word "count"
+        //self.numberOfLikes = [numberOfLikesDictionary[@"count"]integerValue];
+        self.numberOfLikes = [[numberOfLikesDictionary objectForKey:@"count"] integerValue];
+        //NSNumber *number = [numberOfLikesDictionary objectForKey:@"count"];
+        //self.numberOfLikes = [number integerValue];
         
-        if ([numberOfLikesDictionary isKindOfClass:[NSDictionary class]]) {
-            self.numberOfLikes = [numberOfLikesDictionary[@"count"] integerValue];
-        }*/
     }
     
     return self;
@@ -83,7 +85,7 @@
         self.caption = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(caption))];
         self.comments = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(comments))];
         self.likeState = [aDecoder decodeIntegerForKey:NSStringFromSelector(@selector(likeState))];
-        self.numberOfLikes = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(numberOfLikes))];
+        self.numberOfLikes = [aDecoder decodeIntegerForKey:NSStringFromSelector(@selector(numberOfLikes))];
     }
     
     return self;
@@ -97,18 +99,7 @@
     [aCoder encodeObject:self.caption forKey:NSStringFromSelector(@selector(caption))];
     [aCoder encodeObject:self.comments forKey:NSStringFromSelector(@selector(comments))];
     [aCoder encodeInteger:self.likeState forKey:NSStringFromSelector(@selector(likeState))];
-    [aCoder encodeObject:self.numberOfLikes forKey:NSStringFromSelector(@selector(numberOfLikes))];
-}
-//testing if counter works
-- (void) countNumberOfLikes {
-    if (self.likeState == LikeStateLiked) {
-        int counter = [self.numberOfLikes intValue] ? [self.numberOfLikes intValue] : 0;
-        counter += 1;
-        self.numberOfLikes = [NSNumber numberWithInt:counter];
-    }
+    [aCoder encodeInteger:self.numberOfLikes forKey:NSStringFromSelector(@selector(numberOfLikes))];
 }
 
-- (void)setNumberOfLikes:(NSNumber *)numberOfLikes{
-    _numberOfLikes = numberOfLikes;
-}
 @end
