@@ -10,11 +10,14 @@
 #import "CropBox.h"
 #import "Media.h"
 #import "UIImage+ImageUtilities.h"
+#import "CameraToolbar.h"
 
 @interface CropImageViewController ()
 
 @property (nonatomic, strong) CropBox *cropBox;
 @property (nonatomic, assign) BOOL hasLoadedOnce;
+@property (nonatomic, strong) UIToolbar *topView;
+@property (nonatomic, strong) UIToolbar *bottomView;
 
 @end
 
@@ -38,9 +41,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self createViews];
     self.view.clipsToBounds = YES;
     
-    [self.view addSubview:self.cropBox];
+    //[self.view addSubview:self.cropBox];
+    NSMutableArray *views = [@[self.cropBox, self.topView, self.bottomView] mutableCopy];
+    
+    for (UIView *view in views) {
+        [self.view addSubview:view];
+    }
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Crop", @"Crop command") style:UIBarButtonItemStyleDone target:self action:@selector(cropPressed:)];
     
@@ -61,9 +70,17 @@
     cropRect.size = CGSizeMake(edgeSize, edgeSize);
     
     CGSize size = self.view.frame.size;
-    
+    //Copied from CameraViewController
     self.cropBox.frame = cropRect;
     self.cropBox.center = CGPointMake(size.width / 2, size.height / 2);
+    
+    CGFloat width = CGRectGetWidth(self.view.bounds);
+    self.topView.frame = CGRectMake(0, self.topLayoutGuide.length, width, self.cropBox.frame.origin.y - self.topLayoutGuide.length);
+    
+    CGFloat yOriginOfBottomView = CGRectGetMaxY(self.topView.frame) + width;
+    CGFloat heightOfBottomView = CGRectGetHeight(self.view.frame) - yOriginOfBottomView;
+    self.bottomView.frame = CGRectMake(0, yOriginOfBottomView, width, heightOfBottomView);
+    
     self.scrollView.frame = self.cropBox.frame;
     self.scrollView.clipsToBounds = NO;
     
@@ -87,5 +104,26 @@
     scrollViewCrop = [scrollViewCrop imageCroppedToRect:visibleRect];
     
     [self.delegate cropControllerFinishedWithImage:scrollViewCrop];
+}
+
+//Moving toolbars into cropbox
+- (void)createViews {
+    self.topView = [UIToolbar new];
+    self.bottomView = [UIToolbar new];
+   // self.cropBox = [CropBox new];
+
+    UIColor *whiteBG = [UIColor colorWithWhite:1.0 alpha:.15];
+    self.topView.barTintColor = whiteBG;
+    self.bottomView.barTintColor = whiteBG;
+    self.topView.alpha = 0.5;
+    self.bottomView.alpha = 0.5;
+}
+
+- (void)addViewsToViewHierarchy {
+    NSMutableArray *views = [@[/*self.cropBox,*/ self.topView, self.bottomView] mutableCopy];
+
+    for (UIView *view in views) {
+        [self.view addSubview:view];
+    }
 }
 @end

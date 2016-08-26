@@ -46,14 +46,16 @@
     [super viewWillLayoutSubviews];
     
     CGFloat width = CGRectGetWidth(self.view.frame);
-    CGFloat minWidth = 100;
+    //Changing the layout size
+    CGFloat minWidth = 60;
     NSInteger divisor = width / minWidth;
     CGFloat cellSize = width / divisor;
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
     flowLayout.itemSize = CGSizeMake(cellSize, cellSize);
-    flowLayout.minimumInteritemSpacing = 0;
-    flowLayout.minimumLineSpacing = 0;
+    // adding more padding
+    flowLayout.minimumInteritemSpacing = 1;
+    flowLayout.minimumLineSpacing = 10;
 }
 
 - (void) loadAssets {
