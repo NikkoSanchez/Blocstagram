@@ -7,6 +7,7 @@
 //
 
 #import "PostToInstagramViewController.h"
+#import "FilterCollectionViewCellSubclass.h"
 
 @interface PostToInstagramViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIDocumentInteractionControllerDelegate>
 
@@ -78,8 +79,8 @@
         self.navigationItem.rightBarButtonItem = self.sendBarButton;
     }
     
-    [self.filterCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-    
+    [self.filterCollectionView registerClass:[FilterCollectionViewCellSubclass class] forCellWithReuseIdentifier:@"cell"];
+    //[self.filterCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     self.view.backgroundColor = [UIColor whiteColor];
     self.filterCollectionView.backgroundColor = [UIColor whiteColor];
     
@@ -135,6 +136,19 @@
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    FilterCollectionViewCellSubclass *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+   
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.filterCollectionView.collectionViewLayout;
+    cell.filterFlowLayout = flowLayout;
+    [cell filterCollectionViewCell];
+    cell.thumbnail.image = self.filterImages[indexPath.row];
+    cell.filterLabel.text = self.filterTitles[indexPath.row];
+    
+    return cell;
+    
+}
+
+/*- (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     static NSInteger imageViewTag = 1000;
@@ -167,7 +181,7 @@
     label.text = self.filterTitles[indexPath.row];
     
     return cell;
-}
+}*/
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.previewImageView.image = self.filterImages[indexPath.row];
@@ -210,6 +224,19 @@
         }
     }];
     
+    // Invert filter
+    
+    [self.photoFilterOperationQueue addOperationWithBlock:^{
+        CIFilter *invertFilter = [CIFilter filterWithName:@"CIColorInvert"];
+        
+        if (invertFilter) {
+            [invertFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            [self addCIImageToCollectionView:invertFilter.outputImage withFilterTitle:NSLocalizedString(@"Invert", @"Invert Filter")];
+        }
+    }];
+    
+    
+    
     // Boom filter
     
     [self.photoFilterOperationQueue addOperationWithBlock:^{
@@ -251,6 +278,25 @@
         if (moodyFilter) {
             [moodyFilter setValue:sourceCIImage forKey:kCIInputImageKey];
             [self addCIImageToCollectionView:moodyFilter.outputImage withFilterTitle:NSLocalizedString(@"Moody", @"Moody Filter")];
+        }
+    }];
+    
+    // Compound filter
+    [self.photoFilterOperationQueue addOperationWithBlock:^{
+        CIFilter *falseFilter = [CIFilter filterWithName:@"CIFalseColor"];
+        CIFilter *posterize = [CIFilter filterWithName:@"CIColorPosterize"];
+        
+        if (falseFilter) {
+            [falseFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            
+            CIImage *result = falseFilter.outputImage;
+            
+            if (posterize) {
+                [posterize setValue:result forKey:kCIInputImageKey];
+                result = posterize.outputImage;
+            }
+            
+            [self addCIImageToCollectionView:result withFilterTitle:NSLocalizedString(@"Compound", @"Compound Filter")];
         }
     }];
     
