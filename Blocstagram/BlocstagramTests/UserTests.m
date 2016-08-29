@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "User.h"
+
 @interface UserTests : XCTestCase
 
 @end
@@ -35,7 +36,10 @@
     XCTAssertEqualObjects(testUser.userName, sourceDictionary[@"username"], @"The username should be equal");
     XCTAssertEqualObjects(testUser.fullName, sourceDictionary[@"full_name"], @"The full name should be equal");
     XCTAssertEqualObjects(testUser.profilePictureURL, [NSURL URLWithString:sourceDictionary[@"profile_picture"]], @"The profile picture should be equal");
-
+    
+    
 }
+
+
 
 @end
