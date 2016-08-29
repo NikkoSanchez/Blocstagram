@@ -12,6 +12,7 @@
 		B93DAC401D6FA86300DFA702 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93DAC3F1D6FA86300DFA702 /* CropImageViewController.m */; };
 		B93DAC431D6FACE600DFA702 /* ImageLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93DAC421D6FACE600DFA702 /* ImageLibraryViewController.m */; };
 		B953005A1D722A6200174C16 /* PostToInstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95300591D722A6200174C16 /* PostToInstagramViewController.m */; };
+		B97617CC1D7408E10013FE93 /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B97617CB1D7408E10013FE93 /* UserTests.m */; };
 		B98E61FB1D6CE0B700015339 /* ComposeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B98E61FA1D6CE0B700015339 /* ComposeCommentView.m */; };
 		B997A08B1D5AF228006AC8E0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A08A1D5AF228006AC8E0 /* User.m */; };
 		B997A08E1D5AF2F6006AC8E0 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = B997A08D1D5AF2F6006AC8E0 /* Media.m */; };
@@ -66,6 +67,7 @@
 		B93DAC421D6FACE600DFA702 /* ImageLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLibraryViewController.m; sourceTree = "<group>"; };
 		B95300581D722A6200174C16 /* PostToInstagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostToInstagramViewController.h; sourceTree = "<group>"; };
 		B95300591D722A6200174C16 /* PostToInstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostToInstagramViewController.m; sourceTree = "<group>"; };
+		B97617CB1D7408E10013FE93 /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		B98E61F91D6CE0B700015339 /* ComposeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeCommentView.h; sourceTree = "<group>"; };
 		B98E61FA1D6CE0B700015339 /* ComposeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeCommentView.m; sourceTree = "<group>"; };
 		B997A0891D5AF228006AC8E0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				B9E7F3141D5A7C7200EE4422 /* BlocstagramTests.m */,
 				B9E7F3161D5A7C7200EE4422 /* Info.plist */,
+				B97617CB1D7408E10013FE93 /* UserTests.m */,
 			);
 			path = BlocstagramTests;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97617CC1D7408E10013FE93 /* UserTests.m in Sources */,
 				B9E7F3151D5A7C7200EE4422 /* BlocstagramTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
