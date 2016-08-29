@@ -10,11 +10,12 @@
 #import "Media.h"
 #import "MediaTableViewCell.h"
 
-@interface MediaFullScreenController () <UIScrollViewDelegate>
+@interface MediaFullScreenController () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
+@property (nonatomic, strong) UITapGestureRecognizer *tapBehind;
 
 @end
 
@@ -53,6 +54,15 @@
     
     [self.tap requireGestureRecognizerToFail:self.doubleTap];
     
+    self.tapBehind = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBehindFired:)];
+    self.tapBehind.numberOfTapsRequired = 1;
+    
+    if (self.tapBehind) {
+        self.tapBehind.cancelsTouchesInView = NO;
+        self.tapBehind.delegate = self;
+    }
+    [self.presentingViewController.view.window addGestureRecognizer:self.tapBehind];
+    
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
     
@@ -66,6 +76,9 @@
     [self recalculateZoomScale];
 }
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGestureRecognizer {
+    return YES;
+}
 - (void)recalculateZoomScale {
     CGSize scrollViewFrameSize = self.scrollView.frame.size;
     CGSize scrollViewContentSize = self.scrollView.contentSize;
@@ -125,6 +138,24 @@
 }
 
 #pragma mark - Gesture Recognizers
+
+- (void)tapBehindFired:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint location = [sender locationInView:self.view];
+        
+        if (![self.view pointInside:location withEvent:nil]) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.tapBehind) {
+        [self.view.window removeGestureRecognizer:self.tapBehind];
+        self.tapBehind = nil;
+    }
+}
 
 - (void)tapFired:(UITapGestureRecognizer *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
